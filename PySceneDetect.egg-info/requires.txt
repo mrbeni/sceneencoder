@@ -1,0 +1,8 @@
+numpy
+Click
+
+[progress_bar]
+tqdm
+
+[unit_tests]
+pytest
