@@ -83,19 +83,24 @@ def get_properties(file_name):
     return file_properties
 
 
-def calculate_psnr(reference_file, compressed_file, current_psnr=0):
+def calculate_psnr(reference_file, compressed_file):
     print('calculate_psnr...')
+    destination = './' + os.path.basename(os.path.splitext(compressed_file)[0]) + '.psnr'
     shell_args = ['/usr/local/bin/ffmpeg', '-loglevel', 'info', '-hide_banner', '-i', compressed_file ,
                   '-i', reference_file, '-lavfi', 'psnr', '-f', 'null', '-']
     proc = subprocess.Popen(shell_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    tee = subprocess.Popen(['tee', compressed_file + str(compressed_file).split('.')[1] + '.log'], stdin=proc.stderr)
+    tee = subprocess.Popen(['tee', destination], stdin=proc.stderr)
     proc.stderr.close()
     tee.communicate()
 
-    psnr = current_psnr or 43
+    line = str(subprocess.check_output(['tail', '-1', destination]))
+    y = float(line.split('y:')[1].split(' ')[0])
+    u = float(line.split('u:')[1].split(' ')[0])
+    v = float(line.split('v:')[1].split(' ')[0])
 
-    return psnr
+    os.remove(destination)
 
+    return int((y + u + v) / 3)
 
 
 def calculate_ladder(reference_properties):
@@ -362,7 +367,7 @@ def concatenate_scenes(scenes, file_name):
 
     for i in scenes:
         os.remove(i)
-        os.remove(i + 'ts.log')
+        # os.remove(i + '.psnr')
 
     print(scenes)
 

@@ -1,0 +1,31 @@
+Input #0, mpegts, from 'ToS-scene-1-270p.ts':
+  Duration: 00:00:00.07, start: 1.400000, bitrate: 721 kb/s
+  Program 1 
+    Metadata:
+      service_name    : Service01
+      service_provider: FFmpeg
+    Stream #0:0[0x100]: Video: h264 (High) ([27][0][0][0] / 0x001B), yuv420p(progressive), 270x112 [SAR 1:1 DAR 135:56], 15 tbr, 90k tbn, 30 tbc
+Input #1, mov,mp4,m4a,3gp,3g2,mj2, from 'ToS-reference-scene-1-270p.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.17.101
+  Duration: 00:00:00.07, start: 0.000000, bitrate: 1234 kb/s
+    Stream #1:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 270x112 [SAR 1:1 DAR 135:56], 1142 kb/s, 15 fps, 15 tbr, 15360 tbn, 30 tbc (default)
+    Metadata:
+      handler_name    : VideoHandler
+Stream mapping:
+  Stream #0:0 (h264) -> psnr:main
+  Stream #1:0 (h264) -> psnr:reference
+  psnr -> Stream #0:0 (wrapped_avframe)
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf58.17.101
+    Stream #0:0: Video: wrapped_avframe, yuv420p, 270x112 [SAR 1:1 DAR 135:56], q=2-31, 200 kb/s, 15 fps, 15 tbn, 15 tbc (default)
+    Metadata:
+      encoder         : Lavc58.22.101 wrapped_avframe
+frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.06 bitrate=N/A speed=18.2x    
+video:1kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+[Parsed_psnr_0 @ 0x7ff033d4e840] PSNR y:31.100279 u:40.496623 v:43.349645 average:32.675761 min:32.675761 max:32.675761
