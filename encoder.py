@@ -4,15 +4,6 @@ import spliter
 import json
 import sys
 
-# SOURCE_DISK = "/mnt/nfs/encoder/src/"
-# URL_PREFIX = "http://127.0.0.1/upload"
-# TARGET_DISK = "/mnt/nfs/encoder/dst/"
-# CALLBACK_URL = "http://127.0.0.1/"
-
-# def callback(message, file_name = None):
-#     data = json.dumps(json.dumps({"file":file_name, "message": message}))
-#     requests.post(CALLBACK_URL, json=data)
-
 
 def main():
     file_name = sys.argv[1]
@@ -43,7 +34,6 @@ def main():
     for i, scene in enumerate(scenes):
         reference_scene = destination + '-reference-scene-' + str(i+1)
         compressed_scene = destination + '-scene-' + str(i+1)
-        # print('reference scene is {} and compressed is {}'.format(reference_scene, compressed_scene))
         reference_transcode(file_name, reference_properties, scene[0], scene[1], reference_scene)
         transcode(file_name, bitrate, reference_properties, scene[0], scene[1], compressed_scene)
         for j in widths:
@@ -58,12 +48,9 @@ def main():
             elif 39 < profile_psnr < 42:
                 pass
             final_scene_lists[j].append(compressed_file)
-            # print(final_scene_lists[j])
 
     for i in widths:
-        # print(final_scene_lists[i])
         concatenate_scenes(final_scene_lists[i], i)
-    # concatenate_scenes(final_scene_lists[j])
 
 
 def get_properties(file_name):
@@ -114,20 +101,15 @@ def calculate_ladder(reference_properties):
     reference_bitrate = int(reference_properties['bit_rate'])
     reference_ladder = (270, 360, 480, 640, 854, 1280, reference_width)
     target_ladder = []
-    bitrate_power = float(0.75)
-    bufsize_coefficient = float(0.30)
+    bitrate_power = float(0.7)
+    bufsize_coefficient = float(0.10)
     for i, profile_width in enumerate(reference_ladder):
         profile_height = int((dar_h * profile_width) / dar_w)
-        # if profile_width < 854:
-        # bitrate_power = float(0.75)
-        # golden formula TODO
 
         profile_bitrate = int(round(((float(profile_width * profile_height) / float(
             reference_width * reference_height)) ** bitrate_power) * reference_bitrate))
         profile_bufsize = int(profile_bitrate + (profile_bitrate * bufsize_coefficient))
-        # profile_attributes = profile_bitrate, profile_bufsize
         target_ladder.append((profile_bitrate, profile_bufsize))
-    # print(target_ladder)
     return target_ladder
 
 
@@ -226,14 +208,12 @@ def reference_transcode(file_name, reference_properties, start_time, duration, o
     command = []
     command.extend(base_ffmpeg)
     width = profiles.keys()
-    # width.sort()
     top_quality = [i for i in width if i <= int(reference_width)]
     for i in top_quality:
         profile_list[i] = profiles[i]
         command.extend(profile_list.get(i))
 
     try:
-        # print(command)
         subprocess.call(command)
         return 'finished'
     except subprocess.SubprocessError as e:
@@ -247,7 +227,6 @@ def transcode(file_name, bit_rate, reference_properties, start_time, duration, o
     avg_frame_rate = reference_properties['avg_frame_rate']
     if '/' in avg_frame_rate:
         dividend, divisor = avg_frame_rate.split('/')
-    # frame_rate = str(reference_properties['avg_frame_rate'])
     frame_rate = float(dividend) / float(divisor)
     gop = str(frame_rate * 6)
     # print(gop + ' gop is that and avg framrate is this ' + str(frame_rate))
@@ -332,22 +311,17 @@ def transcode(file_name, bit_rate, reference_properties, start_time, duration, o
     command = []
     command.extend(base_ffmpeg)
     width = profiles.keys()
-    # width.sort()
     if qualities == 'all':
         width = profiles.keys()
-        # width.sort()
         top_quality = [i for i in width if i <= int(reference_width)]
         for i in top_quality:
             profile_list[i] = profiles[i]
             command.extend(profile_list.get(i))
     else:
-        # profile_list = ast.literal_eval(qualities)
         for i in [qualities]:
             command.extend(profiles.get(i))
-    # try:
-    #     subprocess.call(command)
+
     try:
-        # print(command)
         subprocess.call(command)
         return 'finished'
     except subprocess.SubprocessError as e:
@@ -367,9 +341,6 @@ def concatenate_scenes(scenes, file_name):
 
     for i in scenes:
         os.remove(i)
-        # os.remove(i + '.psnr')
-
-    print(scenes)
 
 
 if __name__ == "__main__":

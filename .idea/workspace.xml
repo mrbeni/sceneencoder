@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b57d75b2-d01d-484a-a079-e63ecf8325d9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/270.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-1280p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-1920p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-270p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-360p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-480p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-640p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-1-854p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-1280p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-1920p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-270p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-360p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-480p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-640p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS-reference-scene-2-854p.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ToS.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder.py" afterDir="false" />
     </list>
@@ -18,8 +33,8 @@
       <file leaf-file-name="encoder.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+            <state relative-caret-position="650">
+              <caret line="342" column="20" selection-start-line="342" selection-start-column="20" selection-end-line="342" selection-end-column="20" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -441,8 +456,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/encoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+        <state relative-caret-position="650">
+          <caret line="342" column="20" selection-start-line="342" selection-start-column="20" selection-end-line="342" selection-end-column="20" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
